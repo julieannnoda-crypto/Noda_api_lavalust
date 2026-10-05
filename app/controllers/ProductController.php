@@ -99,7 +99,7 @@ class ProductController extends Controller
     private function require_admin()
     {
         if ($this->session->userdata('user_role') !== 'admin') {
-            show_error('403 Forbidden', 'Administrator access is required for this action.', 'error_general', 403);
+            show_error('403 Forbidden', 'Administrator access is  required for this action.', 'error_general', 403);
             exit;
         }
     }
