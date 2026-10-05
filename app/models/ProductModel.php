@@ -2,52 +2,33 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /**
- * Model: ProductModel
- * 
- * Automatically generated via CLI.
+ * ProductModel
+ *
+ * Represents the `products` table created in Laboratory Exercise No. 5.
+ * Columns: id, product_name, description, price, quantity, created_at
  */
-class ProductModel extends Model {
-    protected $table = '';
+class ProductModel extends Model
+{
+    /**
+     * Database table this model represents.
+     *
+     * @var string
+     */
+    protected $table = 'products';
+
+    /**
+     * Primary key of the table.
+     *
+     * @var string
+     */
     protected $primary_key = 'id';
-    protected $fillable = [];
-    protected $guarded = ['id'];
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function read(){
-        return $this->db->table('products')->get_all();
-    }
-
-    public function find($id){
-        return $this->db->table('products')->where('id', $id)->get();
-    }
-
-    public function create($product_name, $description, $price, $quantity){
-        $data = array(
-            'product_name' => $product_name,
-            'description' => $description,
-            'price' => $price,
-            'quantity' => $quantity
-        );
-
-        $this->db->table('products')->insert($data);
-    }
-
-    public function update($id, $product_name, $description, $price, $quantity){
-        $data = array(
-            'product_name' => $product_name,
-            'description' => $description,
-            'price' => $price,
-            'quantity' => $quantity
-        );
-
-        return $this->db->table('products')->where('id', $id)->update($data);
-    }
-
-    public function delete($id){
-        return $this->db->table('products')->where('id', $id)->delete();
-    }
+    /**
+     * Mass-assignable fields.
+     * `id` and `created_at` are intentionally excluded so they can
+     * never be overwritten through form input.
+     *
+     * @var array
+     */
+    protected $fillable = ['product_name', 'description', 'price', 'quantity'];
 }
